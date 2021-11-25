@@ -109,7 +109,7 @@ ide-helper:
 	docker compose exec app php artisan ide-helper:meta
 	docker compose exec app php artisan ide-helper:models --nowrite
 bootstrap:
-	@make app
-	composer require laravel/ui 1.*
-	php artisan ui bootstrap
-	npm install && npm run dev
+	docker compose exec app composer require laravel/ui 1.* && \
+	docker compose exec app php artisan ui bootstrap && \
+	docker compose exec app npm install && \
+	docker compose exec app npm run dev
