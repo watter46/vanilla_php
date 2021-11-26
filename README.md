@@ -47,3 +47,18 @@ DB_PASS=secret
 ├── web
 └── db
 ```
+### app container
+
+- Base image
+  - [php](https://hub.docker.com/_/php):7.4-fpm
+  - [composer](https://hub.docker.com/_/composer):2.0
+
+### web container
+
+- Base image
+  - [nginx](https://hub.docker.com/_/nginx):1.20-alpine
+
+### db container
+
+- Base image
+  - [mysql/mysql-server](https://hub.docker.com/r/mysql/mysql-server):8.0
