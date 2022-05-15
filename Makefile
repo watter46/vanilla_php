@@ -10,11 +10,10 @@ vue-install:
 	docker compose exec app composer require laravel/ui 3.*
 	docker compose exec app npm install -save-dev vue@next
 	docker compose exec app npm install
-	mkdir -p backend/resources/ts/components
-	mv ExampleComponent.vue backend/resources/ts/components
+	mv ExampleComponent.vue backend/resources/js
 	mv example.blade.php backend/resources/views
 	bash example_app.js.sh
-	bash example_web.php
+	bash example_web.php.sh
 mv-ts:
 	mkdir -p backend/resources/ts/components
 	mkdir -p backend/resources/ts/@types

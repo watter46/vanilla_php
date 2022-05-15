@@ -3,7 +3,7 @@ set -eu
 
 cat << EOT >> backend/resources/js/app.js
 import { createApp } from 'vue'
-import ExampleComponent from '../ts/components/ExampleComponent.vue'
+import ExampleComponent from './ExampleComponent.vue'
 
 createApp({
     components:{
