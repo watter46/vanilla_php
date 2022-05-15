@@ -6,6 +6,12 @@ env:
 	bash make_env.sh
 laravel-install:
 	docker compose exec app composer create-project --prefer-dist laravel/laravel . "8.*"
+mv-ts:
+	mkdir -p backend/resources/ts/components
+	mkdir -p backend/resources/ts/@types
+	mv shims-vue.d.ts backend/resources/ts/@types
+	mv tsconfig.json backend
+	mv -f webpack.mix.js backend
 create-project:
 	mkdir -p backend
 	@make env
@@ -16,6 +22,7 @@ create-project:
 	docker compose exec app php artisan storage:link
 	docker compose exec app chmod -R 777 storage bootstrap/cache
 	@make fresh
+	@make mv-ts
 install-recommend-packages:
 	docker compose exec app composer require doctrine/dbal
 	docker compose exec app composer require --dev ucan-lab/laravel-dacapo
