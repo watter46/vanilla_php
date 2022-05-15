@@ -5,7 +5,7 @@ build:
 env:
 	bash make_env.sh
 laravel-install:
-	docker compose exec app composer create-project --prefer-dist laravel/laravel . "6.*"
+	docker compose exec app composer create-project --prefer-dist laravel/laravel . "8.*"
 create-project:
 	mkdir -p backend
 	@make env
@@ -48,7 +48,7 @@ destroy:
 destroy-volumes:
 	docker compose down --volumes --remove-orphans
 ps:
-				docker ps -a --no-trunc
+	docker ps -a --no-trunc
 logs:
 	docker compose logs
 logs-watch:
