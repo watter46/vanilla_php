@@ -6,21 +6,15 @@ env:
 	bash make_env.sh
 laravel-install:
 	docker compose exec app composer create-project --prefer-dist laravel/laravel . "8.*"
-vue-install:
+vue-router-ts-install:
 	docker compose exec app composer require laravel/ui 3.*
-	docker compose exec app npm install -save-dev vue@next
+	docker compose exec app npm install -save-dev vue@next vue-router@4 ts-loader typescript
 	docker compose exec app npm install
-	mv ExampleComponent.vue backend/resources/js
-	mv example.blade.php backend/resources/views
-	bash example_app.js.sh
-	bash example_web.php.sh
-mv-ts:
-	mkdir -p backend/resources/ts/components
-	mkdir -p backend/resources/ts/@types
-	mv shims-vue.d.ts backend/resources/ts/@types
-	mv tsconfig.json backend
-mv-webpack:
+	mv -f welcome.blade.php backend/resources/views
 	mv -f webpack.mix.js backend
+	mv -f web.php backend/routes
+	mv tsconfig.json backend
+	mv ts backend/resources
 create-project:
 	mkdir -p backend
 	@make env
@@ -124,17 +118,3 @@ ide-helper:
 	docker compose exec app php artisan ide-helper:generate
 	docker compose exec app php artisan ide-helper:meta
 	docker compose exec app php artisan ide-helper:models --nowrite
-
-# Laravel/ui vue.js command
-bootstrap:
-	docker compose exec app composer require laravel/ui 1.* && \
-	docker compose exec app php artisan ui bootstrap && \
-	docker compose exec app npm install && \
-	docker compose exec app npm run dev
-vue-auth:
-	docker compose exec app composer require laravel/ui 1.* && \
-	docker compose exec app php artisan ui vue --auth && \
-	docker compose exec app npm install && \
-	docker compose exec app npm run dev
-vue-router:
-	docker compose exec app npm install vue-router
