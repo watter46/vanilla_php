@@ -8,7 +8,7 @@
   - VueDraggable(next) 4.1
 
 - Backend
-  - PHP 7.4
+  - PHP 8.1
   - Laravel 8.0
 
 ## Usage
@@ -54,7 +54,7 @@ DB_PASS=secret
 ### app container
 
 - Base image
-  - [php](https://hub.docker.com/_/php):7.4-fpm
+  - [php](https://hub.docker.com/_/php):8.1.0-fpm
   - [composer](https://hub.docker.com/_/composer):2.0
 
 ### web container
