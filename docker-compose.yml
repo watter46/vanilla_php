@@ -4,10 +4,6 @@ volumes:
   php-fpm-socket:
   db-store:
   node_modules:
-    driver_opts:
-      type: none
-      device: ${PWD}/node_modules
-      o: bind
 
 services:
   web:
@@ -48,10 +44,12 @@ services:
       - type: volume
         source: php-fpm-socket
         target: /var/run/php-fpm
+      - type: volume
+        source: node_modules
+        target: /var/www/backend/node_modules
       - type: bind
         source: ./backend
         target: /var/www/backend
-      - .node_modules:/var/www/backend/node_modules
     environment:
       - DB_CONNECTION=mysql
       - DB_HOST=db
