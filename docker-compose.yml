@@ -3,7 +3,11 @@ version: '3.9'
 volumes:
   php-fpm-socket:
   db-store:
-  node_modules_volume:
+  node_modules:
+    driver_opts:
+      type: none
+      device: ${PWD}/node_modules
+      o: bind
 
 services:
   web:
@@ -47,9 +51,7 @@ services:
       - type: bind
         source: ./backend
         target: /var/www/backend
-      - type: bind
-        source: node_modules_volume
-        target: /var/www/backend/node_modules
+      - .node_modules:/var/www/backend/node_modules
     environment:
       - DB_CONNECTION=mysql
       - DB_HOST=db
