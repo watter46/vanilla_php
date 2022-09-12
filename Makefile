@@ -17,6 +17,7 @@ create-project:
 	docker compose exec app chmod -R 777 storage bootstrap/cache
 	@make fresh
 init:
+	@make env
 	docker compose up -d --build
 	docker compose exec app composer install
 	docker compose exec app cp .env.example .env
@@ -24,6 +25,14 @@ init:
 	docker compose exec app php artisan storage:link
 	docker compose exec app chmod -R 777 storage bootstrap/cache
 	@make fresh
+	@make jetstream
+livewire:
+	docker compose exec app composer require livewire/livewire:2.*
+jetstream:
+	docker compose exec app composer require laravel/jetstream:1.*
+	docker compose exec app php artisan jetstream:install livewire
+	docker compose exec app npm install
+	docker compose exec app npm run dev
 remake:
 	@make destroy
 	@make init

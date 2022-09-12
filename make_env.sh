@@ -3,8 +3,11 @@ set -eu
 
 cat << EOT > .env
 #ホストのUID GID
-USER_ID=`id -u`
 GROUP_ID=`id -g`
+GROUP_NAME=hoge
+USER_ID=`id -u`
+USER_NAME=hoge
+
 
 #Laravelの設定
 WEB_PORT=28000

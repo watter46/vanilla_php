@@ -3,7 +3,6 @@ version: '3.9'
 volumes:
   php-fpm-socket:
   db-store:
-  node_modules:
 
 services:
   web:
@@ -12,8 +11,10 @@ services:
       context: .
       dockerfile: ./infra/docker/nginx/Dockerfile
       args:
-          - USER_ID=${USER_ID}
-          - GROUP_ID=${GROUP_ID}
+        - GROUP_ID=${GROUP_ID}
+        - GROUP_NAME=${GROUP_NAME}
+        - USER_ID=${USER_ID}
+        - USER_NAME=${USER_NAME}
     ports:
       - target: 8080
         published: ${WEB_PORT}
@@ -38,15 +39,14 @@ services:
       context: .
       dockerfile: ./infra/docker/php/Dockerfile
       args:
-        - USER_ID=${USER_ID}
         - GROUP_ID=${GROUP_ID}
+        - GROUP_NAME=${GROUP_NAME}
+        - USER_ID=${USER_ID}
+        - USER_NAME=${USER_NAME}
     volumes:
       - type: volume
         source: php-fpm-socket
         target: /var/run/php-fpm
-      - type: volume
-        source: node_modules
-        target: /var/www/backend/node_modules
       - type: bind
         source: ./backend
         target: /var/www/backend
