@@ -33,10 +33,6 @@ WORKDIR /var/www/backend
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 COPY --from=node /usr/local/bin /usr/local/bin
 COPY --from=node /usr/local/lib/node_modules/npm /usr/local/lib/node_modules/npm
-COPY --from=node /opt/yarn* /opt/yarn
-
-RUN ln -fs /opt/yarn/bin/yarn /usr/local/bin/yarn \
-  && ln -fs /opt/yarn/bin/yarnpkg /usr/local/bin/yarnpkg
 
 COPY ./infra/docker/php/php-fpm.d/zzz-www.conf /usr/local/etc/php-fpm.d/zzz-www.conf
 COPY ./infra/docker/php/www.conf /usr/local/etc/php-fpm.d/www.conf
