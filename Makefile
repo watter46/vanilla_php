@@ -5,7 +5,7 @@ build:
 env:
 	bash make_env.sh
 laravel-install:
-	docker compose exec app composer create-project --prefer-dist laravel/laravel . "8.*"
+	docker compose exec app composer create-project --prefer-dist laravel/laravel . "9.*"
 create-project:
 	mkdir -p backend
 	@make env
