@@ -1,19 +1,16 @@
-# livewire
+# EXEチーム開発
 
 ## バージョン
-- FrontEnd
-  - livewire
 
 - Backend
   - PHP 8.1
-  - Laravel 8.*
 
 ## Usage
 
 ```bash
-$ git clone git@github.com:watter46/Laravel-npm_non-root.git
-$ cd Laravel-npm_non-root
-$ make create-project
+$ git clone <cloneするURL> <ディレクトリ名>
+$ cd <ディレクトリ名>
+$ make init
 ```
 
 - phpとnginxの実行ユーザー名、グループ名はそれぞれ
@@ -24,7 +21,7 @@ Dockerfileで指定できます
 http://localhost:28000
 
 
-- Laravelの.envはdocker-comopseの環境設定で上書きします
+- PHPの.envはdocker-comopseの環境設定で上書きします
 
 値を変更したい場合はmake_env.shを変更してください
 
@@ -32,14 +29,11 @@ http://localhost:28000
 ```bash
 WEB_PORT=8080
 DB_PORT=3306
-DB_NAME=laravel_local
+DB_NAME=php_local
 DB_USER=phper
 DB_PASS=secret
 ```
 
-## Tips
-
-- Read this [Makefile](https://github.com/watter46/Laravel-npm_non-root/blob/main/Makefile).
 
 ## Container structures
 
@@ -52,7 +46,7 @@ DB_PASS=secret
 
 - Base image
   - [php](https://hub.docker.com/_/php):8.1.0-fpm
-  - [composer](https://hub.docker.com/_/composer):2.0
+  - [composer](https://hub.docker.com/_/composer):2.4
 
 ### web container
 
